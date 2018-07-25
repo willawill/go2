@@ -2,23 +2,19 @@ package main
 import "fmt"
 
 func selectionSort(A []int) []int {
-  B := make([]int, len(A))
-  count := 0
-  for count < len(A) {
-    min := A[0]
-    index := 0
-    for i := 1; i < len(A); i++ {
-      if A[i] >= min {
+  for j:= 0; j < len(A); j++ {
+    min := j
+    for i := j + 1; i < len(A); i++ {
+      if A[i] >= A[min] {
         continue
       }
-      min = A[i]
-      index = i
+      min = i
     }
-    B[count] = min
-    count++
-    A[index] = 100
+    if min != j {
+      A[min], A[j] = A[j], A[min]
+    }
   }
-  return B
+  return A
 }
 
 func main() {
